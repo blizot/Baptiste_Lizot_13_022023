@@ -1,0 +1,28 @@
+$color-primary: hsl(158, 100%, 37%);
+$color-light: hsl(0, 0%, 100%);
+$color-dark: hsl(210, 29%, 24%);
+
+$colors: (
+  'primary': (
+    'base': $color-primary,
+    'darker': darken($color-primary, 10),
+  ),
+  'light': (
+    'base': $color-light,
+  ),
+  'dark': (
+    'base': $color-dark,
+  ),
+);
+
+$breakpoint-M: 768px;
+$breakpoint-L: 992px;
+$breakpoint-XL: 1200px;
+$breakpoint-XXL: 1440px;
+
+$breakpoints: (
+  'medium': $breakpoint-M,
+  'large': $breakpoint-L,
+  'huge': $breakpoint-XL,
+  'max': $breakpoint-XXL,
+);

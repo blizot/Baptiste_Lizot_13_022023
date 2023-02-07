@@ -1,0 +1,23 @@
+@use '../base/' as *;
+
+// keeps content inside 1440px max
+html {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+body {
+  color: color('dark');
+}
+
+a {
+  color: color('dark');
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+*:focus {
+  outline-color: color('primary');
+}

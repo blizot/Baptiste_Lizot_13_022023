@@ -1,0 +1,43 @@
+@use '../components/' as *;
+
+.header { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem;
+
+  @include breakpoint('medium') {
+    padding: 0.25rem 1.25rem;
+  }
+
+  &__logo {
+    height: 3.25rem;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1rem;
+    margin-right: 0.5rem;
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+
+.icon {
+  display: inline-block;
+  text-rendering: auto;
+
+  &--user::before {
+    font: var(--fa-font-solid);
+    content: '\f2bd';
+    margin-right: 0.25rem;
+  }
+
+  &--sign-out::before {
+    font: var(--fa-font-solid);
+    content: '\f2f5';
+    margin-right: 0.25rem;
+  }
+}
