@@ -2,7 +2,7 @@ const year = new Date().getFullYear()
 
 function Header() {
   return (
-    <footer className='footer'>
+    <footer className='footer full-width-fill'>
       <p>Copyright {year} Argent Bank</p>
     </footer>
   )

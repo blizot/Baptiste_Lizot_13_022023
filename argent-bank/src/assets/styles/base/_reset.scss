@@ -11,6 +11,10 @@
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
 nav {
   position: relative;
 }
@@ -39,4 +43,9 @@ fieldset {
   margin: -1px;
   overflow: hidden;
   position: absolute;
+}
+
+.full-width-fill {
+  padding-inline: 9999999px;
+  margin-inline: -9999999px;
 }
