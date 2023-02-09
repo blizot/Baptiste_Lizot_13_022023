@@ -25,6 +25,7 @@
     top: 2rem;
     right: 1rem;
     width: 16.75rem;
+    border-radius: 0.25rem;
 
     @include breakpoint('medium') {
       top: 3rem;
