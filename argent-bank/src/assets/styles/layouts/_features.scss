@@ -1,0 +1,12 @@
+@use '../layouts/' as *;
+
+.features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include breakpoint('large') {
+    flex-direction: row;
+    align-items: baseline;
+  }
+}
