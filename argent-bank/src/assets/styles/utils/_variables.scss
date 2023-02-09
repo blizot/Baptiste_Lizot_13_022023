@@ -5,13 +5,16 @@ $color-dark: hsl(210, 29%, 24%);
 $colors: (
   'primary': (
     'base': $color-primary,
-    'darker': darken($color-primary, 10),
+    'darker': darken($color-primary, 20),
+    'lighter': lighten($color-primary, 20),
   ),
   'light': (
     'base': $color-light,
+    'darker': darken($color-light, 20),
   ),
   'dark': (
     'base': $color-dark,
+    'lighter': lighten($color-dark, 20),
   ),
 );
 

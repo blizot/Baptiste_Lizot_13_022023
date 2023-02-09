@@ -1,6 +1,5 @@
 import logo from '../../assets/images/argentBankLogo.png'
 
-
 function Header() {
   return (
     <header>
