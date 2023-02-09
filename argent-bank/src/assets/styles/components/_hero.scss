@@ -1,0 +1,50 @@
+@use '../components/' as *;
+
+.hero-section {
+  background-color: color('primary');
+  background-image: url('../../images/bank-tree.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 20rem;
+  position: relative;
+
+
+  @include breakpoint('medium') {
+    height: 25rem;
+  }
+
+  @include breakpoint('huge') {
+    background-position: 0 2.5%;
+  }
+
+  &__content {
+    position: absolute;
+    background-color: color('light');
+    padding: 2rem;
+    margin: 2rem;    
+    top: 2rem;
+    right: 1rem;
+    width: 16.75rem;
+
+    @include breakpoint('medium') {
+      top: 3rem;
+      right: 3rem;
+      width: 22.75rem;
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+
+    @include breakpoint('medium') {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__text {
+    @include breakpoint('medium') {
+      font-size: 1.25rem;
+    }
+  }
+}
