@@ -1,0 +1,9 @@
+@use '../pages/' as *;
+
+.sign-in  {
+  background-color: color('secondary');
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}

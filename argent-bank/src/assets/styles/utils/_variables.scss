@@ -1,12 +1,18 @@
 $color-primary: hsl(158, 100%, 37%);
+$color-secondary: hsl(265, 100%, 8%);
 $color-light: hsl(0, 0%, 100%);
 $color-dark: hsl(210, 29%, 24%);
 
 $colors: (
   'primary': (
     'base': $color-primary,
-    'darker': darken($color-primary, 20),
-    'lighter': lighten($color-primary, 20),
+    'darker': darken($color-primary, 10),
+    'lighter': lighten($color-primary, 10),
+  ),
+  'secondary': (
+    'base': $color-secondary,
+    'darker': darken($color-secondary, 10),
+    'lighter': lighten($color-secondary, 10),
   ),
   'light': (
     'base': $color-light,

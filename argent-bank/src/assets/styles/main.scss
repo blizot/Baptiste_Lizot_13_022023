@@ -10,5 +10,8 @@
 @use './components/footer';
 @use './components/hero';
 @use './components/feature-item';
+@use './components/sign-in-form';
 
 @use './layouts/features';
+
+@use './pages/sign-in';
