@@ -21,6 +21,10 @@
   &__amount {
     font-size: 2.5rem;
     font-weight: bold;
+
+    &::before {
+      content: '$';
+    }
   }
 
   &__button {

@@ -4,7 +4,7 @@ function AccountItem({ account }) {
       <div>
         <h2 className='account-item__title prevent-text-overflow'>{account.name}</h2>
         <p className='account-item__amount prevent-text-overflow'>
-          ${Number(account.amount).toLocaleString('en',{ minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          {Number(account.amount).toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </p>
         <p className='account-item__description'>{account.comment}</p>
       </div>
