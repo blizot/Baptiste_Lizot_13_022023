@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import './assets/styles/main.scss'
 
@@ -12,23 +12,44 @@ import SignIn from './pages/SignIn'
 import User from './pages/User'
 import E404 from './pages/E404'
 
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <h1>Hello World!</h1>,
-//   },
-// ])
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <>
+      <Header />
+      <Home />
+      <Footer />
+    </>,
+  },
+  {
+    path: '/signin',
+    element: <>
+      <Header />
+      <SignIn />
+      <Footer />
+    </>,
+  },
+  {
+    path: '/user',
+    element: <>
+      <Header />
+      <User />
+      <Footer />
+    </>,
+  },
+  {
+    path: '*',
+    element: <>
+      <Header />
+      <E404 />
+      <Footer />
+    </>,
+  },
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Header />
-    <Home />
-    <SignIn />
-    <User />
-    <E404 />
-    <Footer />
-
-    {/* <RouterProvider router={router} /> */}
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

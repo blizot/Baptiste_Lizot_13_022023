@@ -1,17 +1,29 @@
+import { Link, useLocation } from 'react-router-dom'
+
 import logo from '../../assets/images/argentBankLogo.png'
 
 function Header() {
+  let location = useLocation().pathname;
+
   return (
     <header>
       <nav className="header">
-        <a href='/'>
+        <Link to='/'>
           <img src={logo} alt="Argent Bank" className='header__logo' />
-        </a>
+        </Link>
 
         <ul className='header__links'>
-          <li><a href='/signin' className='icon icon--user'>Sign In</a></li>
-          <li><a href='/user' className='icon icon--user'>User</a></li>
-          <li><a href='/' className='icon icon--sign-out'>Sign Out</a></li>
+          {['/', '/signin'].includes(location) 
+            ? <li><Link to='/signin' className='icon icon--user'>Sign In</Link></li>
+            : ''
+          }
+          {['/user'].includes(location)
+            ? <>
+                <li><Link to='/user' className='icon icon--user'>User</Link></li>
+                <li><Link to='/' className='icon icon--sign-out'>Sign Out</Link></li>
+              </>
+            : ''
+          }
         </ul>
       </nav>
     </header>
