@@ -16,8 +16,10 @@
     background-position: 0 2.5%;
   }
 
-  @include breakpoint('max') {
-    border-radius: 0.25rem;
+  // only round hero corners when strictly above 1440px
+  border-radius: 0.25rem;
+  @media only screen and (max-width: 1440px) {
+    border-radius: 0;
   }
 
   &__content {
