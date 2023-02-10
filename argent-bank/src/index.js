@@ -9,7 +9,8 @@ import Header from './components/Header'
 
 // import Home from './pages/Home'
 // import SignIn from './pages/SignIn'
-import User from './pages/User'
+// import User from './pages/User'
+import E404 from './pages/E404'
 
 // const router = createBrowserRouter([
 //   {
@@ -24,7 +25,8 @@ root.render(
     <Header />
     {/* <Home /> */}
     {/* <SignIn /> */}
-    <User />
+    {/* <User /> */}
+    <E404 />
     <Footer />
 
     {/* <RouterProvider router={router} /> */}
