@@ -4,8 +4,8 @@ import Accounts from '../../layouts/Accounts'
 function User() {
   return (
     <main className='user full-width-fill'>
-      <UserWelcome user={'Tony Jarvis'} />
       {/* Mockup, should be replaced with the API */}
+      <UserWelcome user={'Tony Jarvis'} />
       <Accounts accounts={[
         {
           name: 'Argent Bank Checking (x8349)',
@@ -22,7 +22,7 @@ function User() {
           amount: 184.30,
           comment: 'Current Balance',
         },
-      ]}/>
+      ]} />
     </main>
   )
 }

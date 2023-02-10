@@ -8,7 +8,7 @@ const featuresIcons = {
   security: securityIcon
 }
 
-function FeatureItem({feature, title, text}) {
+function FeatureItem({ feature, title, text }) {
   return (
     <article className='feature-item'>
       <img src={featuresIcons[feature]} alt={feature} className='feature-item__icon' />

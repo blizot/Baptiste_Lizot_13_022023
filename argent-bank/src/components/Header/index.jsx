@@ -7,9 +7,9 @@ function Header() {
 
   return (
     <header>
-      <nav className="header">
+      <nav className='header'>
         <Link to='/'>
-          <img src={logo} alt="Argent Bank" className='header__logo' />
+          <img src={logo} alt='Argent Bank' className='header__logo' />
         </Link>
 
         <ul className='header__links'>

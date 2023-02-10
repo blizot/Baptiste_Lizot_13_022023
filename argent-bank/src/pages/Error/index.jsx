@@ -21,7 +21,7 @@ function Error() {
       </>
     )
   } else {
-    return <p className='error__message--colored'>Oops!</p>
+    return <p className='error__message error__message--colored'>Oops!</p>
   }
 }
 

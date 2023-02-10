@@ -1,6 +1,6 @@
 @use '../base/' as *;
 
-// keeps content inside 1440px max
+// keeps content inside 1440px width max
 html {
   max-width: 1440px;
   margin: 0 auto;
