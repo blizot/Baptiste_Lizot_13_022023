@@ -13,3 +13,9 @@
   padding-inline: 9999999px;
   margin-inline: -9999999px;
 }
+
+.prevent-text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

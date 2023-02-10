@@ -1,0 +1,35 @@
+@use '../components/' as *;
+
+.account-item {
+  background-color: color('light');
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 25rem;
+
+  @include breakpoint('medium') {
+    max-width: min(80vw, 44rem);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+
+  &__amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  &__button {
+    margin-top: 1rem;
+    width: 100%;
+
+    @include breakpoint('medium') {
+      margin-top: auto;
+      width: 12.5rem;
+    }
+  }
+}
