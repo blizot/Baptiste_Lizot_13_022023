@@ -14,12 +14,18 @@ function Header() {
 
         <ul className='header__links'>
           {['/', '/signin'].includes(location) &&
-            <li><Link to='/signin' className='icon icon--user'>Sign In</Link></li>
+            <li>
+              <Link to='/signin' className='icon icon--user'>Sign In</Link>
+            </li>
           }
           {['/user'].includes(location) &&
             <>
-              <li><Link to='/user' className='icon icon--user'>User</Link></li>
-              <li><Link to='/' className='icon icon--sign-out'>Sign Out</Link></li>
+              <li className='user-link'>
+                <Link to='/user' className='icon icon--user'>User</Link>
+              </li>
+              <li>
+                <Link to='/' className='icon icon--sign-out'>Sign Out</Link>
+              </li>
             </>
           }
         </ul>

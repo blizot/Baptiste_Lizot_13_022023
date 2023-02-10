@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.25rem;
+  gap: 2rem;
 
   @include breakpoint('medium') {
     padding: 0.25rem 1.25rem;
@@ -39,5 +40,14 @@
     font: var(--fa-font-solid);
     content: '\f2f5';
     margin-right: 0.25rem;
+  }
+}
+
+// exception to hide user link below 398px width
+.user-link {
+  display: none;
+
+  @media only screen and (min-width: 398px) {
+    display: unset;
   }
 }
