@@ -5,6 +5,7 @@ function User() {
   return (
     <main className='user full-width-fill'>
       <UserWelcome user={'Tony Jarvis'} />
+      {/* Mockup, should be replaced with the API */}
       <Accounts accounts={[
         {
           name: 'Argent Bank Checking (x8349)',
