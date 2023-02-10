@@ -8,12 +8,16 @@
 
   &__title {
     font-size: 10rem;
-    color: color('secondary', 'lighter')
+    color: color('secondary', 'lighter');
   }
 
   &__message {
     font-weight: bold;
     font-style: italic;
+
+    &--colored {
+      color: color('secondary', 'lighter');
+    }
   }
 
   &__link {
