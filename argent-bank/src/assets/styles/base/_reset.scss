@@ -33,19 +33,3 @@ a {
 fieldset {
   min-width: auto;
 }
-
-.screenreader-only {
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  overflow: hidden;
-  position: absolute;
-}
-
-.full-width-fill {
-  padding-inline: 9999999px;
-  margin-inline: -9999999px;
-}
