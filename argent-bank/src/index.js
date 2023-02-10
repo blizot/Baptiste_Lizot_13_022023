@@ -4,9 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import './assets/styles/main.scss'
 
-import Footer from './components/Footer'
-import Header from './components/Header'
-
+import App from './pages/App'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import User from './pages/User'
@@ -15,35 +13,19 @@ import E404 from './pages/E404'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <>
-      <Header />
-      <Home />
-      <Footer />
-    </>,
+    element: <><App><Home /></App></>,
   },
   {
     path: '/signin',
-    element: <>
-      <Header />
-      <SignIn />
-      <Footer />
-    </>,
+    element: <><App><SignIn /></App></>,
   },
   {
     path: '/user',
-    element: <>
-      <Header />
-      <User />
-      <Footer />
-    </>,
+    element: <><App><User /></App></>,
   },
   {
     path: '*',
-    element: <>
-      <Header />
-      <E404 />
-      <Footer />
-    </>,
+    element: <><App><E404 /></App></>,
   },
 ])
 
