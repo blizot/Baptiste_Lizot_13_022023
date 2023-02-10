@@ -6,6 +6,7 @@
   padding: 1.5rem;
   width: 100%;
   max-width: 25rem;
+  gap: 1rem;
 
   @include breakpoint('medium') {
     max-width: min(80vw, 44rem);
@@ -34,6 +35,7 @@
     @include breakpoint('medium') {
       margin-top: auto;
       width: 12.5rem;
+      flex-shrink: 0;
     }
   }
 }
