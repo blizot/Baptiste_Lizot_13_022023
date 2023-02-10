@@ -8,13 +8,16 @@
   height: 20rem;
   position: relative;
 
-
   @include breakpoint('medium') {
     height: 25rem;
   }
 
   @include breakpoint('huge') {
     background-position: 0 2.5%;
+  }
+
+  @include breakpoint('max') {
+    border-radius: 0.25rem;
   }
 
   &__content {

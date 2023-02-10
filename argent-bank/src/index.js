@@ -7,9 +7,9 @@ import './assets/styles/main.scss'
 import Footer from './components/Footer'
 import Header from './components/Header'
 
-// import Home from './pages/Home'
-// import SignIn from './pages/SignIn'
-// import User from './pages/User'
+import Home from './pages/Home'
+import SignIn from './pages/SignIn'
+import User from './pages/User'
 import E404 from './pages/E404'
 
 // const router = createBrowserRouter([
@@ -23,9 +23,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Header />
-    {/* <Home /> */}
-    {/* <SignIn /> */}
-    {/* <User /> */}
+    <Home />
+    <SignIn />
+    <User />
     <E404 />
     <Footer />
 
