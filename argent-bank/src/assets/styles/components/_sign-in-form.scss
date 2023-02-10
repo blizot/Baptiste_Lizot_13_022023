@@ -56,17 +56,5 @@
 
   &__button {
     width: 100%;
-    font-size: 1rem;
-    font-weight: bold;
-    color: color('light');
-    background-color: color('primary');
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: color('primary', 'darker');
-    }
   }
 }

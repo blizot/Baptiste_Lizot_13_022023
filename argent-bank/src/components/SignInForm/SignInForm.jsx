@@ -15,7 +15,7 @@ function SignInForm() {
           <label for='remember'>Remember me</label>
           <input type='checkbox' id='remember' />
         </div>
-        <button className='sign-in-form__button'>Sign In</button>
+        <button className='sign-in-form__button primary-button'>Sign In</button>
       </form>
     </section>
   )
