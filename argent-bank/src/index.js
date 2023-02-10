@@ -8,24 +8,23 @@ import App from './pages/App'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import User from './pages/User'
-import E404 from './pages/E404'
+import Error from './pages/Error'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <><App><Home /></App></>,
+    errorElement: <Error />,
   },
   {
     path: '/signin',
     element: <><App><SignIn /></App></>,
+    errorElement: <Error />,
   },
   {
     path: '/user',
     element: <><App><User /></App></>,
-  },
-  {
-    path: '*',
-    element: <><App><E404 /></App></>,
+    errorElement: <Error />,
   },
 ])
 
