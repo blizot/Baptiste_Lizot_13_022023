@@ -1,6 +1,6 @@
 const year = new Date().getFullYear()
 
-function Header() {
+function Footer() {
   return (
     <footer className='footer full-width-fill'>
       <p>Copyright {year} Argent Bank</p>
@@ -8,4 +8,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Footer
