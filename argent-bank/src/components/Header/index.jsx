@@ -13,16 +13,14 @@ function Header() {
         </Link>
 
         <ul className='header__links'>
-          {['/', '/signin'].includes(location) 
-            ? <li><Link to='/signin' className='icon icon--user'>Sign In</Link></li>
-            : ''
+          {['/', '/signin'].includes(location) &&
+            <li><Link to='/signin' className='icon icon--user'>Sign In</Link></li>
           }
-          {['/user'].includes(location)
-            ? <>
-                <li><Link to='/user' className='icon icon--user'>User</Link></li>
-                <li><Link to='/' className='icon icon--sign-out'>Sign Out</Link></li>
-              </>
-            : ''
+          {['/user'].includes(location) &&
+            <>
+              <li><Link to='/user' className='icon icon--user'>User</Link></li>
+              <li><Link to='/' className='icon icon--sign-out'>Sign Out</Link></li>
+            </>
           }
         </ul>
       </nav>
