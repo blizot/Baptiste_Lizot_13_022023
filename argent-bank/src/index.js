@@ -5,10 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './assets/styles/main.scss'
 
 import App from './pages/App'
+import Error from './pages/Error'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import User from './pages/User'
-import Error from './pages/Error'
 
 const router = createBrowserRouter([
   {
@@ -33,4 +33,4 @@ root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
-);
+)
