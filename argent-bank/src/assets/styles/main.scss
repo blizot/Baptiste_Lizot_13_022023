@@ -12,12 +12,12 @@
 @use './components/footer';
 @use './components/hero';
 @use './components/feature-item';
-@use './components/sign-in-form';
+@use './components/log-in-form';
 @use './components/account-item';
 
 @use './layouts/features';
 @use './layouts/accounts';
 
-@use './pages/sign-in';
-@use './pages/user';
+@use './pages/log-in';
+@use './pages/profile';
 @use './pages/error';

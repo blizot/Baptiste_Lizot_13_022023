@@ -7,8 +7,8 @@ import './assets/styles/main.scss'
 import App from './pages/App'
 import Error from './pages/Error'
 import Home from './pages/Home'
-import SignIn from './pages/SignIn'
-import User from './pages/User'
+import LogIn from './pages/LogIn'
+import Profile from './pages/Profile'
 
 const router = createBrowserRouter([
   {
@@ -17,13 +17,13 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: '/signin',
-    element: <><App><SignIn /></App></>,
+    path: '/login',
+    element: <><App><LogIn /></App></>,
     errorElement: <Error />,
   },
   {
-    path: '/user',
-    element: <><App><User /></App></>,
+    path: '/profile',
+    element: <><App><Profile /></App></>,
     errorElement: <Error />,
   },
 ])

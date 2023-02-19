@@ -1,11 +1,11 @@
-import UserWelcome from '../../components/UserWelcome'
+import ProfileWelcome from '../../components/ProfileWelcome'
 import Accounts from '../../layouts/Accounts'
 
-function User() {
+function Profile() {
   return (
-    <main className='user full-width-fill'>
+    <main className='profile full-width-fill'>
       {/* Mockup, should be replaced with the API */}
-      <UserWelcome user={'Tony Jarvis'} />
+      <ProfileWelcome user={'Tony Jarvis'} />
       <Accounts accounts={[
         {
           name: 'Argent Bank Checking (x8349)',
@@ -27,4 +27,4 @@ function User() {
   )
 }
 
-export default User
+export default Profile

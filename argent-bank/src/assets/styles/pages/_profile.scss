@@ -1,9 +1,16 @@
 @use '../pages/' as *;
 
-.sign-in  {
+.profile {
   background-color: color('secondary');
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
+
+  &__welcome-message {
+    color: color('light');
+    text-align: center;
+    font-size: 2rem;
+    margin-block: 1rem;
+  }
 }
