@@ -1,9 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
+import * as authActions from '../../services/auth'
 
 import logo from '../../assets/images/argentBankLogo.png'
 
 function Header() {
-  let location = useLocation().pathname;
+  const dispatch = useDispatch()
+  let location = useLocation().pathname
 
   return (
     <header>
@@ -24,7 +28,11 @@ function Header() {
                 <Link to='/profile' className='icon icon--user'>User</Link>
               </li>
               <li>
-                <Link to='/' className='icon icon--log-out'>Log Out</Link>
+                <Link to='/' 
+                  onClick={() => dispatch(authActions.logout())}
+                  className='icon icon--log-out'>
+                    Log Out
+                </Link>
               </li>
             </>
           }
