@@ -1,7 +1,16 @@
+import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import ProfileWelcome from '../../components/ProfileWelcome'
 import Accounts from '../../layouts/Accounts'
 
 function Profile() {
+  const { status } = useSelector(state => state.auth)
+
+  if (status === 'disconnected') {
+    return <Navigate to='/' />
+  }
+  
   return (
     <main className='profile full-width-fill'>
       {/* Mockup, should be replaced with the API */}
