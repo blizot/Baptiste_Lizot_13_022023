@@ -1,13 +1,13 @@
-import { Link, useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
-import * as authActions from '../../services/auth'
+import * as authActions from '../../utils/services/redux.auth'
 
 import logo from '../../assets/images/argentBankLogo.png'
 
 function Header() {
   const dispatch = useDispatch()
-  let location = useLocation().pathname
+  const { status } = useSelector(state => state.auth)
 
   return (
     <header>
@@ -17,19 +17,19 @@ function Header() {
         </Link>
 
         <ul className='header__links'>
-          {['/', '/login'].includes(location) &&
+          {status !== 'connected' &&
             <li>
               <Link to='/login' className='icon icon--user'>Log In</Link>
             </li>
           }
-          {['/profile'].includes(location) &&
+          {status === 'connected' &&
             <>
               <li className='user-link'>
                 <Link to='/profile' className='icon icon--user'>User</Link>
               </li>
               <li>
                 <Link to='/' 
-                  onClick={() => dispatch(authActions.logout())}
+                  onClick={() => dispatch(authActions.disconnect())}
                   className='icon icon--log-out'>
                     Log Out
                 </Link>
