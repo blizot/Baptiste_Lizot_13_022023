@@ -7,7 +7,7 @@ import logo from '../../assets/images/argentBankLogo.png'
 
 function Header() {
   const dispatch = useDispatch()
-  const { status } = useSelector(state => state.auth)
+  const { status: authStatus } = useSelector(state => state.auth)
 
   return (
     <header>
@@ -17,12 +17,12 @@ function Header() {
         </Link>
 
         <ul className='header__links'>
-          {status !== 'connected' &&
+          {authStatus !== 'connected' &&
             <li>
               <Link to='/login' className='icon icon--user'>Log In</Link>
             </li>
           }
-          {status === 'connected' &&
+          {authStatus === 'connected' &&
             <>
               <li className='user-link'>
                 <Link to='/profile' className='icon icon--user'>User</Link>
