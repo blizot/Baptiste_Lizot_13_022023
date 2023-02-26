@@ -4,7 +4,7 @@ import { userLogIn } from '../../utils/services/redux.auth'
 
 function LogInForm() {
   const dispatch = useDispatch()
-  const { status, error } = useSelector(state => state.auth)
+  const { status: authStatus, error: authError } = useSelector(state => state.auth)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -12,10 +12,10 @@ function LogInForm() {
       email: event.target.email.value,
       password: event.target.password.value
     },
-    status, dispatch))
+    authStatus, dispatch))
   }
 
-  if (status === 'connected') {
+  if (authStatus === 'connected') {
     return <Navigate to='/profile' />
   }
 
@@ -43,8 +43,8 @@ function LogInForm() {
         </Form>
       </section>
 
-      <div className={`log-in-form__error ${status === 'rejected' && 'log-in-form__error--visible'}`}>
-        <p className='prevent-text-overflow'>{ error }</p>
+      <div className={`log-in-form__error ${authStatus === 'rejected' && 'log-in-form__error--visible'}`}>
+        <p className='prevent-text-overflow'>{ authError }</p>
       </div>
     </>
   )

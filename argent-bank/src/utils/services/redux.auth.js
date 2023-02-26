@@ -70,6 +70,7 @@ const authSlice = createSlice({
           status: 'rejected'
         }
       }
+      return
     },
     disconnect: (state) => {
       return {
