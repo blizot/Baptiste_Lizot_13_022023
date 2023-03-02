@@ -13,8 +13,8 @@ function Profile() {
   
   return (
     <main className='profile full-width-fill'>
+      <ProfileWelcome />
       {/* Mockup, should be replaced with the API */}
-      <ProfileWelcome user={'Tony Jarvis'} />
       <Accounts accounts={[
         {
           name: 'Argent Bank Checking (x8349)',

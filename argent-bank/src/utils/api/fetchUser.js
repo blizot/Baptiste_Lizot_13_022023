@@ -3,12 +3,13 @@
  * 
  * @param {String} endpoint - must be any of the User Module endpoints
  * @param {Object} body - defaults to an empty object
+ * @param {Object} jwt - defaults empty string
  * @param {String} method - defaults to 'POST'
  * 
  * @returns {Object}
  */
 
-async function fetchUser(endpoint, body = {}, method = 'POST') {
+async function fetchUser(endpoint, body = {}, jwt = '', method = 'POST') {
   const base = 'http://localhost:3001/api/v1/user'
   const url = base + endpoint
 
@@ -16,7 +17,8 @@ async function fetchUser(endpoint, body = {}, method = 'POST') {
     method: method,
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${jwt}`
     },
     body: JSON.stringify(body),
   }

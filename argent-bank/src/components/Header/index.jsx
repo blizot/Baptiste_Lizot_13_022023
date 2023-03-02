@@ -8,6 +8,7 @@ import logo from '../../assets/images/argentBankLogo.png'
 function Header() {
   const dispatch = useDispatch()
   const { status: authStatus } = useSelector(state => state.auth)
+  const { data: profileData } = useSelector(state => state.profile)
 
   return (
     <header>
@@ -25,7 +26,7 @@ function Header() {
           {authStatus === 'connected' &&
             <>
               <li className='user-link'>
-                <Link to='/profile' className='icon icon--user'>User</Link>
+                <Link to='/profile' className='icon icon--user'>{profileData?.firstName}</Link>
               </li>
               <li>
                 <Link to='/' 
