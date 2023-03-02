@@ -1,24 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit'
 import fetchUser from '../api/fetchUser'
 
-async function userLogIn(formInput, status, dispatch) {
-  if (['pending', 'updating'].includes(status)) {
-    return
-  }
-
-  dispatch(actions.connect())
-  try {
-    const response = await fetchUser('/login', {email: formInput.email, password: formInput.password})
-
-    let token = null
-    let errorMessage = null
-    if (response.body) token = response.body.token
-    if (response.error) errorMessage = response.error.message
-
-    if (token) dispatch(actions.connected(token))
-    if (errorMessage) dispatch(actions.rejected(errorMessage))
-  } catch (error) {
-    dispatch(actions.rejected(error))
+function userLogIn(formInput) {
+  return async (dispatch, getState) => {
+    const status = getState().auth.status
+    if (['pending', 'updating'].includes(status)) {
+      return
+    }
+  
+    dispatch(actions.connect())
+    try {
+      const response = await fetchUser('/login', {email: formInput.email, password: formInput.password})
+  
+      let token = null
+      let errorMessage = null
+      if (response.body) token = response.body.token
+      if (response.error) errorMessage = response.error.message
+  
+      if (token) dispatch(actions.connected(token))
+      if (errorMessage) dispatch(actions.rejected(errorMessage))
+    } catch (error) {
+      dispatch(actions.rejected(error))
+    }
   }
 }
 

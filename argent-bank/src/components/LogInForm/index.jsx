@@ -11,8 +11,7 @@ function LogInForm() {
     dispatch(userLogIn({
       email: event.target.email.value,
       password: event.target.password.value
-    },
-    authStatus, dispatch))
+    }))
   }
 
   if (authStatus === 'connected') {
