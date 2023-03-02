@@ -70,6 +70,13 @@ const profileSlice = createSlice({
         }
       }
       return
+    },
+    purge: (state) => {
+      return {
+        ...state,
+        data: null,
+        status: 'void'
+      }
     }
   }
 })
@@ -77,5 +84,5 @@ const profileSlice = createSlice({
 export { fetchProfile }
 
 const { actions, reducer } = profileSlice
-export const { disconnect } = actions
+export const { purge } = actions
 export default reducer

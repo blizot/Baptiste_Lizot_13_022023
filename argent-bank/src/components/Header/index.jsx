@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import * as authActions from '../../utils/services/redux.auth'
+import * as profileActions from '../../utils/services/redux.profile'
 
 import logo from '../../assets/images/argentBankLogo.png'
 
@@ -30,7 +31,10 @@ function Header() {
               </li>
               <li>
                 <Link to='/' 
-                  onClick={() => dispatch(authActions.disconnect())}
+                  onClick={() => {
+                    dispatch(authActions.disconnect())
+                    dispatch(profileActions.purge())
+                  }}
                   className='icon icon--log-out'>
                     Log Out
                 </Link>
