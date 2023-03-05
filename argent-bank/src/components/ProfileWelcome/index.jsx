@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchProfile } from '../../utils/services/redux.profile'
@@ -14,15 +14,10 @@ function ProfileWelcome() {
     dispatch(fetchProfile(jwt))
   }, [jwt, dispatch])
 
-  const [isFormVisible, setFormVisibility] = useState(false)
-
-  const toggleFormVisibility = () => setFormVisibility(!isFormVisible)
-
   return (
     <>
       <h1 className='profile__welcome-message'>Welcome back<br />{profileData?.firstName} {profileData?.lastName}!</h1>
-      <button onClick={toggleFormVisibility} className={`${isFormVisible ? 'hide-everything' : 'primary-button'}`}>Edit Name</button>
-      <ProfileNameEditForm formVisibility={{value: isFormVisible, toggle: toggleFormVisibility}} data={{profileData, jwt}} />
+      <ProfileNameEditForm jwt={jwt} profileData={profileData} />
     </>
   )
 }
