@@ -12,6 +12,7 @@ function ProfileNameEditForm({ formVisibility, data }) {
       firstName: event.target.firstName.value,
       lastName: event.target.lastName.value
     }, data.jwt))
+    event.target.reset()
     formVisibility.toggle()
   }
 
