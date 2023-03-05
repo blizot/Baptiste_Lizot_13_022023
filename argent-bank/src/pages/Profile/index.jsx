@@ -1,11 +1,20 @@
+import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import ProfileWelcome from '../../components/ProfileWelcome'
+import { fetchProfile } from '../../utils/services/redux.profile'
+
+import ProfileNameEditForm from '../../components/ProfileNameEditForm'
 import Accounts from '../../layouts/Accounts'
 
 function Profile() {
-  const { status } = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+  const { data: profileData } = useSelector(state => state.profile)
+  const { status, token: jwt } = useSelector(state => state.auth)
+
+  useEffect(() => {
+    dispatch(fetchProfile(jwt))
+  }, [jwt, dispatch])
 
   if (status === 'disconnected') {
     return <Navigate to='/' />
@@ -13,7 +22,9 @@ function Profile() {
   
   return (
     <main className='profile full-width-fill'>
-      <ProfileWelcome />
+      <h1 className='profile__welcome-message'>Welcome back<br />{profileData?.firstName} {profileData?.lastName}!</h1>
+      <ProfileNameEditForm jwt={jwt} profileData={profileData} />
+
       {/* Mockup, should be replaced with the API */}
       <Accounts accounts={[
         {
