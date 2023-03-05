@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchProfile } from '../../utils/services/redux.profile'
 
-import ProfileNameEditForm from '../../components/ProfileNameEditForm'
+import NameEditForm from '../../components/NameEditForm'
 import Accounts from '../../layouts/Accounts'
 
 function Profile() {
@@ -23,7 +23,7 @@ function Profile() {
   return (
     <main className='profile full-width-fill'>
       <h1 className='profile__welcome-message'>Welcome back<br />{profileData?.firstName} {profileData?.lastName}!</h1>
-      <ProfileNameEditForm jwt={jwt} profileData={profileData} />
+      <NameEditForm jwt={jwt} profileData={profileData} />
 
       {/* Mockup, should be replaced with the API */}
       <Accounts accounts={[

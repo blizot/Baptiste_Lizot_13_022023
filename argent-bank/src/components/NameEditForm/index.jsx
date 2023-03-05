@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { editName } from '../../utils/services/redux.profile'
 
-function ProfileNameEditForm({ jwt, profileData }) {
+function NameEditForm({ jwt, profileData }) {
   const dispatch = useDispatch()
 
   const [isFormVisible, setFormVisibility] = useState(false)
@@ -48,4 +48,4 @@ function ProfileNameEditForm({ jwt, profileData }) {
   )
 }
 
-export default ProfileNameEditForm
+export default NameEditForm
