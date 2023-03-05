@@ -11,11 +11,16 @@ function userLogIn(formInput) {
     dispatch(actions.connect())
     try {
       const response = await fetchUser('/login', {email: formInput.email, password: formInput.password})
-  
+
       let token = null
       let errorMessage = null
-      if (response.body) token = response.body.token
-      if (response.error) errorMessage = response.error.message
+
+      if (response.status === 200 && response.body) {
+        token = response.body.token
+      }
+      if (response.error) {
+        errorMessage = response.error.message
+      }
   
       if (token) dispatch(actions.connected(token))
       if (errorMessage) dispatch(actions.rejected(errorMessage))
