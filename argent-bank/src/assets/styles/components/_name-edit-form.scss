@@ -1,0 +1,28 @@
+.name-edit-form {
+  width: 18.75rem;
+  
+  &__text-inputs {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    
+    input {
+      width: 8.75rem;
+      padding: 0.25rem;
+      font-size: 1.25rem;
+      border: 1px solid color('dark', 'lighter');
+      border-radius: 0.25rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+
+    button {
+      width: 5.75rem;
+    }
+  }
+}
