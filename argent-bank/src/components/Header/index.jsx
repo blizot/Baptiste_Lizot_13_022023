@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import * as authActions from '../../utils/services/redux.auth'
-import * as profileActions from '../../utils/services/redux.profile'
+import * as authActions from '../../utils/redux/auth'
+import * as profileActions from '../../utils/redux/profile'
 
 import logo from '../../assets/images/argentBankLogo.png'
 

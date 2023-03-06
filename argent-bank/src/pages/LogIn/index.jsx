@@ -1,7 +1,7 @@
 
 import { Form, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLogIn } from '../../utils/services/redux.auth'
+import { userLogIn } from '../../utils/redux/auth'
 
 function LogIn() {
   const dispatch = useDispatch()

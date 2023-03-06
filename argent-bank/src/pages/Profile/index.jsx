@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchProfile } from '../../utils/services/redux.profile'
+import { fetchProfile } from '../../utils/redux/profile'
 
 import NameEditForm from '../../components/NameEditForm'
 import Accounts from '../../layouts/Accounts'

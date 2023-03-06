@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Form } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { editName } from '../../utils/services/redux.profile'
+import { editName } from '../../utils/redux/profile'
 
 function NameEditForm({ jwt, profileData }) {
   const dispatch = useDispatch()
