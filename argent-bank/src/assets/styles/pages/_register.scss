@@ -1,0 +1,89 @@
+@use '../pages/' as *;
+
+.register  {
+  background-color: color('secondary');
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+
+  &-form {
+    width: 18.75rem;
+    background-color: color('light');
+    padding: 2rem;
+    // padding + title::before's font-size
+    padding-top: 3.5rem;
+    margin-top: 3rem;
+    border-radius: 0.25rem;
+  
+    &__title {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-block: 1.25rem;
+      position: relative;
+  
+      &::before {
+        font: var(--fa-font-solid);
+        content: '\f2bd';
+        position: absolute;
+        top: -2.75rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+    }
+    
+    input {
+      margin-bottom: 1rem;
+      width: 100%;
+      padding: 0.25rem;
+      font-size: 1.25rem;
+      border: 1px solid color('dark', 'lighter');
+      border-radius: 0.25rem;
+    }
+  
+    label {
+      font-weight: bold;
+    }
+
+    &__text-input {
+      display: flex;
+      flex-direction: column;
+
+      &--grouped {
+        flex-direction: row;
+        gap: 1rem;
+      }
+    }
+  
+    &__button {
+      width: 100%;
+    }
+
+    &__notification {
+      width: 18.75rem;
+      background-color: color('light');
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 0.25rem;
+  
+      text-align: center;
+      font-weight: bold;
+
+      &--success {
+        color: color('primary', 'darker')
+      }
+
+      &--error {
+        color: red;
+      }
+      
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+      
+      &--visible {
+        opacity: 1;
+      }
+    }
+  }
+}

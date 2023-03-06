@@ -11,6 +11,7 @@ import Error from './pages/Error'
 import Home from './pages/Home'
 import LogIn from './pages/LogIn'
 import Profile from './pages/Profile'
+import Register from './pages/Register'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <><App><Profile /></App></>,
+    errorElement: <Error />,
+  },
+  {
+    path: '/register',
+    element: <><App><Register /></App></>,
     errorElement: <Error />,
   },
 ])

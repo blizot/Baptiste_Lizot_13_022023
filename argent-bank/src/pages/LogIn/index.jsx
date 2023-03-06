@@ -1,6 +1,7 @@
 
-import { Form, Navigate } from 'react-router-dom'
+import { Form, Navigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { userLogIn } from '../../utils/redux/auth'
 
 function LogIn() {
@@ -45,6 +46,10 @@ function LogIn() {
 
       <div className={`log-in-form__error ${authStatus === 'rejected' && 'log-in-form__error--visible'}`}>
         <p className='prevent-text-overflow'>{ authError }</p>
+        {authError?.toLowerCase().includes('user not found') && 
+          <Link to='/register'>Register</Link>}
+        {authError?.toLowerCase().includes('password is invalid') && 
+          <Link>Reset password</Link>}
       </div>
     </main>
   )
