@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { userLogIn } from '../../utils/redux/auth'
 
+import revealPassword from '../../utils/tools/revealPassword'
+
 function LogIn() {
   const dispatch = useDispatch()
   const { status: authStatus, error: authError } = useSelector(state => state.auth)
@@ -31,7 +33,8 @@ function LogIn() {
           </div>
           <div className='log-in-form__text-input'>
             <label htmlFor='form-password'>Password</label>
-            <input type='password' id='form-password' name='password' required />
+            <input type='password' id='form-password' name='password' required
+              onMouseDown={revealPassword} onMouseUp={revealPassword} />
           </div>
           <div className='log-in-form__checkbox'>
             <label htmlFor='remember'>Remember me</label>

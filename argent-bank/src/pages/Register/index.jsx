@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import fetchUser from '../../utils/api/fetchUser'
 import { userLogIn } from '../../utils/redux/auth'
 
+import revealPassword from '../../utils/tools/revealPassword'
+
 function Register() {
   const [isRegistered, setRegistered] = useState(undefined)
   const registeredStatus = (status) => setRegistered(status)
@@ -64,7 +66,8 @@ function Register() {
           </div>
           <div className='register-form__text-input'>
             <label htmlFor='form-password'>Password</label>
-            <input type='password' id='form-password' name='password' required />
+            <input type='password' id='form-password' name='password' required
+              onMouseDown={revealPassword} onMouseUp={revealPassword} />
           </div>
           <button type='submit'
             className='register-form__button primary-button'>
