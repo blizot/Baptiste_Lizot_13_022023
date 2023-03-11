@@ -1,122 +1,155 @@
 swagger: '2.0'
+
 info:
-  title: Bank Argent API documentation
-  description: Contains all available API endpoints in this codebase
-  version: '1.0.0'
-  termsOfService: 'http://swagger.io/terms/'
+  title: ArgentBank API documentation
+  description: Contains all available API endpoints in this codebase (fixed)
+  termsOfService: http://swagger.io/terms/
+  version: '1.0.1'
 host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
+tags: 
+- name: 'User Module'
+  description: 'User operations'
+
 paths:
   /user/login:
     post:
       tags:
         - User Module
       summary: Login
-      description: API for Login
+      description: API to Login
       parameters:
         - in: body
-          name: body
-          description: Login Payload
+          name: Body
+          description: Login credentials
           required: true
           schema:
-            $ref: '#/definitions/Login'
+            $ref: '#/definitions/LoginRequest'
       produces:
         - application/json
       responses:
         '200':
-          description: Login Successfully
+          description: Login successful
           schema:
             $ref: '#/definitions/LoginResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid fields
         '500':
-          description: Internal Server Error
+          description: Internal server error
+
   /user/signup:
     post:
       tags:
         - User Module
       summary: Signup
-      description: API for Signup
+      description: API to Signup
       parameters:
         - in: body
-          name: body
-          description: Signup Payload
+          name: Body
+          description: Signup data
           required: true
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/definitions/SignupRequest'
       produces:
         - application/json
       responses:
-        '200':
-          description: Signup Successfully
+        '201':
+          description: Signup successful
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/SignupResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid fields
         '500':
-          description: Internal Server Error
+          description: Internal server error
+
   /user/profile:
     post:
       security:
         - Bearer: []
       tags:
         - User Module
-      summary: User Profile API
-      description: API for fetching a user profile
+      summary: Fetch profile
+      description: API to fetch a user profile
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Bearer + jwt
           required: true
       produces:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/ProfileResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid fields
         '500':
-          description: Internal Server Error
+          description: Internal server error
+
     put:
       security:
         - Bearer: []
       tags:
         - User Module
-      summary: User Profile API
-      description: API for updating a user profile
+      summary: Update profile
+      description: API to update a user profile
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Bearer + jwt
           required: true
         - in: body
-          name: body
-          description: Update user profile attributes
+          name: Body
+          description: User profile attributes to update
           required: true
           schema:
-            $ref: '#/definitions/UserProfile'
+            $ref: '#/definitions/ProfileRequest'
       produces:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile updated successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/ProfileResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid fields
         '500':
-          description: Internal Server Error
+          description: Internal server error
+
 securityDefinitions:
   Bearer:
-    type: apiKey
     name: Authorization
     in: header
+    description: \"Bearer\" + jwt (separated by a space)
+    type: apiKey
+
 definitions:
-  User:
+  LoginRequest:
+    type: object
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+  LoginResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          token:
+            type: string
+
+  SignupRequest:
     properties:
       email:
         type: string
@@ -130,15 +163,7 @@ definitions:
       lastName:
         type: string
         description: user last name
-  Login:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-  ApiResponse:
+  SignupResponse:
     type: object
     properties:
       status:
@@ -152,15 +177,43 @@ definitions:
             type: string
           email:
             type: string
-  LoginResponse:
-    type: object
-    properties:
-      token:
-        type: string
-  UserProfile:
+          password:
+            type: string
+          firstName:
+            type: string
+          lastName:
+            type: string
+          createdAt:
+            type: string
+          updatedAt:
+            type: string
+
+  ProfileRequest:
     type: object
     properties:
       firstName:
         type: string
       lastName:
         type: string
+  ProfileResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+          email:
+            type: string
+          firstName:
+            type: string
+          lastName:
+            type: string
+          createdAt:
+            type: string
+          updatedAt:
+            type: string
