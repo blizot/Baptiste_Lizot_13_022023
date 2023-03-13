@@ -38,8 +38,12 @@ paths:
             $ref: '#/definitions/LoginResponse'
         '400':
           description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
         '500':
           description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
 
   /user/signup:
     post:
@@ -63,11 +67,15 @@ paths:
             $ref: '#/definitions/SignupResponse'
         '400':
           description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
         '500':
           description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
 
   /user/profile:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
@@ -88,16 +96,24 @@ paths:
             $ref: '#/definitions/ProfileResponse'
         '400':
           description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '401':
+          description: User not authenticated
+        '403':
+          description: User not authorized
         '500':
           description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
 
-    put:
+    patch:
       security:
         - Bearer: []
       tags:
         - User Module
       summary: Update profile
-      description: API to update a user profile
+      description: API to update a user's first and last name
       parameters:
         - in: header
           name: Authorization
@@ -108,7 +124,7 @@ paths:
           description: User profile attributes to update
           required: true
           schema:
-            $ref: '#/definitions/ProfileRequest'
+            $ref: '#/definitions/ProfileEditRequest'
       produces:
         - application/json
       responses:
@@ -118,79 +134,334 @@ paths:
             $ref: '#/definitions/ProfileResponse'
         '400':
           description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '401':
+          description: User not authenticated
+        '403':
+          description: User not authorized
         '500':
           description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
 
-  /transactions:
-    post:
+  /transactions/{accountId}:
+    get:
       security:
         - Bearer: []
       tags:
         - Transactions Module
       summary: Fetch transactions
-      description: API to fetch a user transactions
+      description: API to fetch a user's account transactions
       parameters:
         - in: header
           name: Authorization
           description: Bearer + jwt
           required: true
+          value: Bearer jwt
+        - in: path
+          name: accountId
+          description: account ID
+          type: string
+          required: true
+          value: x8349
+        - in: query
+          name: timePeriod
+          description: How far back should the data be fetched (in days)
+          type: integer
+          required: false
+          value: 30
       produces:
         - application/json
       responses:
         '200':
           description: User transactions retrieved successfully
           schema:
-            $ref: '#/definitions/TransactionsResponse'
+            $ref: '#/definitions/TransactionsCollectionResponse'
         '400':
           description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
         '401':
-          description: User not authentified
+          description: User not authenticated
         '403':
           description: User not authorized
+        '422':
+          description: Account ID not found
+          schema:
+            $ref: '#/definitions/EmptyResponse'
         '500':
           description: Internal server error
-
-  /transactions/{transactionsId}:
-    patch:
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+          
+    post:
       security:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Update transactions
-      description: API to update a user transactions' category or notes
+      summary: Add a transaction
+      description: API to add a transaction to an user's account
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer + jwt
+          required: true
+          value: Bearer jwt
+        - in: path
+          name: accountId
+          description: account ID
+          type: string
+          required: true
+          value: x8349
+        - in: body
+          name: Body
+          description: Transaction details
+          schema:
+            $ref: '#/definitions/TransactionsRequest'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: User transaction created successfully
+          schema:
+            $ref: '#/definitions/TransactionsResponse'
+        '400':
+          description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '401':
+          description: User not authenticated
+        '403':
+          description: User not authorized
+        '422':
+          description: Account ID not found
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+
+  /transactions/{accountId}/{transactionsId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Fetch a specific transaction
+      description: API to fetch a user transaction
       parameters:
         - in: header
           name: Authorization
           description: Bearer + jwt
           required: true
         - in: path
+          name: accountId
+          description: account ID
+          type: string
+          required: true
+          value: x8349
+        - in: path
           name: transactionsId
-          description: ID of transaction to update
+          description: transaction ID to fetch
           required: true
           type: string
+          value: 0587hh790f2knsfi
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User transaction retrieved successfully
+          schema:
+            $ref: '#/definitions/TransactionsResponse'
+        '400':
+          description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '401':
+          description: User not authenticated
+        '403':
+          description: User not authorized
+        '422':
+          description: Account ID or Transaction ID not found
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+          
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Add content to a transaction
+      description: API to add a category and/or notes to a user transaction
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer + jwt
+          required: true
+        - in: path
+          name: accountId
+          description: account ID
+          type: string
+          required: true
+          value: x8349
+        - in: path
+          name: transactionsId
+          description: transaction ID to fetch
+          required: true
+          type: string
+          value: 0587hh790f2knsfi
         - in: body
           name: Body
           description: Transaction attributes to update
           required: true
           schema:
-            $ref: '#/definitions/TransactionsRequest'
+            $ref: '#/definitions/TransactionsEditRequest'
       produces:
         - application/json
       responses:
         '200':
-          description: User transactions updated successfully
+          description: User transaction updated successfully
           schema:
             $ref: '#/definitions/TransactionsResponse'
         '400':
           description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
         '401':
-          description: User not authentified
+          description: User not authenticated
         '403':
           description: User not authorized
-        '404':
-          description: Transaction not found
+        '422':
+          description: Account ID or Transaction ID not found
+          schema:
+            $ref: '#/definitions/EmptyResponse'
         '500':
           description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+    
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Edit content of a transaction
+      description: API to edit the category and/or notes of a user transaction
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer + jwt
+          required: true
+        - in: path
+          name: accountId
+          description: account ID
+          type: string
+          required: true
+          value: x8349
+        - in: path
+          name: transactionsId
+          description: transaction ID to fetch
+          required: true
+          type: string
+          value: 0587hh790f2knsfi
+        - in: body
+          name: Body
+          description: Transaction attributes to update
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionsEditRequest'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User transaction updated successfully
+          schema:
+            $ref: '#/definitions/TransactionsResponse'
+        '400':
+          description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '401':
+          description: User not authenticated
+        '403':
+          description: User not authorized
+        '422':
+          description: Account ID or Transaction ID not found
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+          
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Delete a transaction or its editable content
+      description: API to delete a transaction's category and/or notes, or the transaction itself
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer + jwt
+          required: true
+        - in: path
+          name: accountId
+          description: account ID
+          type: string
+          required: true
+          value: x8349
+        - in: path
+          name: transactionsId
+          description: transaction ID to fetch
+          required: true
+          type: string
+          value: 0587hh790f2knsfi
+        - in: query
+          name: deleteTransaction
+          description: whether the transaction should be deleted
+          required: false
+          type: boolean
+        - in: query
+          name: deleteCategory
+          description: whether the category should be deleted
+          required: false
+          type: boolean
+        - in: query
+          name: deleteNotes
+          description: whether the notes should be deleted
+          required: false
+          type: boolean
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User transaction deleted successfully
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '400':
+          description: Invalid fields
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '401':
+          description: User not authenticated
+        '403':
+          description: User not authorized
+        '422':
+          description: Account ID or Transaction ID not found
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/EmptyResponse'
 
 securityDefinitions:
   Bearer:
@@ -261,7 +532,7 @@ definitions:
           updatedAt:
             type: string
 
-  ProfileRequest:
+  ProfileEditRequest:
     type: object
     properties:
       firstName:
@@ -294,11 +565,50 @@ definitions:
   TransactionsRequest:
     type: object
     properties:
+      date:
+        type: string
+      description:
+        type: string
+      amount:
+        type: number
+      balance:
+        type: number
+      type:
+        type: string
+  TransactionsEditRequest:
+    type: object
+    properties:
       category:
         type: string
       notes:
         type: string
   TransactionsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+          date:              
+            type: string
+          decription:
+            type: string
+          amount:
+            type: number
+          balance:
+            type: number
+          type:
+            type: string
+          category:
+            type: string
+          notes:
+            type: string
+  TransactionsCollectionResponse:
     type: object
     properties:
       status:
@@ -326,3 +636,11 @@ definitions:
               type: string
             notes:
               type: string
+        
+  EmptyResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
