@@ -39,11 +39,11 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
 
   /user/signup:
     post:
@@ -68,11 +68,11 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
 
   /user/profile:
     get:
@@ -97,7 +97,7 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '401':
           description: User not authenticated
         '403':
@@ -105,7 +105,7 @@ paths:
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
 
     patch:
       security:
@@ -135,7 +135,7 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '401':
           description: User not authenticated
         '403':
@@ -143,34 +143,26 @@ paths:
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
 
-  /transactions/{accountId}:
+  /transactions/account/{accountId}:
     get:
       security:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Fetch transactions
-      description: API to fetch a user's account transactions
+      summary: Fetch account transactions
+      description: API to fetch a user's account transactions for the current month
       parameters:
         - in: header
           name: Authorization
           description: Bearer + jwt
           required: true
-          value: Bearer jwt
         - in: path
           name: accountId
           description: account ID
           type: string
           required: true
-          value: x8349
-        - in: query
-          name: timePeriod
-          description: How far back should the data be fetched (in days)
-          type: integer
-          required: false
-          value: 30
       produces:
         - application/json
       responses:
@@ -181,7 +173,7 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '401':
           description: User not authenticated
         '403':
@@ -189,34 +181,33 @@ paths:
         '422':
           description: Account ID not found
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
           
     post:
       security:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Add a transaction
+      summary: Create account transaction
       description: API to add a transaction to an user's account
       parameters:
         - in: header
           name: Authorization
           description: Bearer + jwt
           required: true
-          value: Bearer jwt
         - in: path
           name: accountId
           description: account ID
           type: string
           required: true
-          value: x8349
         - in: body
           name: Body
           description: Transaction details
+          required: true
           schema:
             $ref: '#/definitions/TransactionsRequest'
       produces:
@@ -229,7 +220,7 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '401':
           description: User not authenticated
         '403':
@@ -237,37 +228,30 @@ paths:
         '422':
           description: Account ID not found
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
 
-  /transactions/{accountId}/{transactionsId}:
+  /transactions/transaction/{transactionsId}:
     get:
       security:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Fetch a specific transaction
-      description: API to fetch a user transaction
+      summary: Fetch a transaction
+      description: API to fetch a specific user transaction
       parameters:
         - in: header
           name: Authorization
           description: Bearer + jwt
           required: true
         - in: path
-          name: accountId
-          description: account ID
-          type: string
-          required: true
-          value: x8349
-        - in: path
           name: transactionsId
           description: transaction ID to fetch
           required: true
           type: string
-          value: 0587hh790f2knsfi
       produces:
         - application/json
       responses:
@@ -278,19 +262,19 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '401':
           description: User not authenticated
         '403':
           description: User not authorized
         '422':
-          description: Account ID or Transaction ID not found
+          description: Transaction ID not found
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
           
     put:
       security:
@@ -305,17 +289,10 @@ paths:
           description: Bearer + jwt
           required: true
         - in: path
-          name: accountId
-          description: account ID
-          type: string
-          required: true
-          value: x8349
-        - in: path
           name: transactionsId
           description: transaction ID to fetch
           required: true
           type: string
-          value: 0587hh790f2knsfi
         - in: body
           name: Body
           description: Transaction attributes to update
@@ -332,19 +309,19 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '401':
           description: User not authenticated
         '403':
           description: User not authorized
         '422':
-          description: Account ID or Transaction ID not found
+          description: Transaction ID not found
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
     
     patch:
       security:
@@ -359,17 +336,10 @@ paths:
           description: Bearer + jwt
           required: true
         - in: path
-          name: accountId
-          description: account ID
-          type: string
-          required: true
-          value: x8349
-        - in: path
           name: transactionsId
           description: transaction ID to fetch
           required: true
           type: string
-          value: 0587hh790f2knsfi
         - in: body
           name: Body
           description: Transaction attributes to update
@@ -386,19 +356,19 @@ paths:
         '400':
           description: Invalid fields
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '401':
           description: User not authenticated
         '403':
           description: User not authorized
         '422':
-          description: Account ID or Transaction ID not found
+          description: Transaction ID not found
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
           
     delete:
       security:
@@ -413,17 +383,10 @@ paths:
           description: Bearer + jwt
           required: true
         - in: path
-          name: accountId
-          description: account ID
-          type: string
-          required: true
-          value: x8349
-        - in: path
           name: transactionsId
           description: transaction ID to fetch
           required: true
           type: string
-          value: 0587hh790f2knsfi
         - in: query
           name: deleteTransaction
           description: whether the transaction should be deleted
@@ -431,12 +394,12 @@ paths:
           type: boolean
         - in: query
           name: deleteCategory
-          description: whether the category should be deleted
+          description: whether the transaction's category should be deleted
           required: false
           type: boolean
         - in: query
           name: deleteNotes
-          description: whether the notes should be deleted
+          description: whether the transactions's notes should be deleted
           required: false
           type: boolean
       produces:
@@ -445,23 +408,23 @@ paths:
         '200':
           description: User transaction deleted successfully
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '400':
-          description: Invalid fields
+          description: Invalid fields __or absence of a query param__
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '401':
           description: User not authenticated
         '403':
           description: User not authorized
         '422':
-          description: Account ID or Transaction ID not found
+          description: Transaction ID not found
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
         '500':
           description: Internal server error
           schema:
-            $ref: '#/definitions/EmptyResponse'
+            $ref: '#/definitions/MessageOnlyResponse'
 
 securityDefinitions:
   Bearer:
@@ -594,6 +557,8 @@ definitions:
         properties:
           id:
             type: string
+          accountId:
+            type: string
           date:              
             type: string
           decription:
@@ -607,6 +572,10 @@ definitions:
           category:
             type: string
           notes:
+            type: string
+          createdAt:
+            type: string
+          updatedAt:
             type: string
   TransactionsCollectionResponse:
     type: object
@@ -622,6 +591,8 @@ definitions:
           properties:
             id:
               type: string
+            accountId:
+              type: string
             date:
               type: string
             description:
@@ -636,8 +607,12 @@ definitions:
               type: string
             notes:
               type: string
+            createdAt:
+              type: string
+            updatedAt:
+              type: string
         
-  EmptyResponse:
+  MessageOnlyResponse:
     type: object
     properties:
       status:
